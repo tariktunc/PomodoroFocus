@@ -1,17 +1,156 @@
+$primaryBgColor: #ba4949;
+$textColorWhite: #fff;
+
 .header {
-  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid $textColorWhite;
+  opacity: 0.9;
+  color: $textColorWhite; // #fff
+  font-size: 20px;
 }
 
 .tasks {
-  display: flex;
+  padding-bottom: 10px;
+
   .headerOrTask {
     width: 600px;
-    background-color: red;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $textColorWhite;
+    border-radius: 5px 7px 7px 5px;
+    border-left: 5px solid black;
+    .tasksHeader,
+    .task {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 50px;
+    }
     .tasksHeader {
-      background-color: yellow;
+      i {
+        background-color: rgb(223, 223, 223);
+        width: 1.8rem;
+        height: 1.8rem;
+        line-height: 1.8rem;
+        border-radius: 100%;
+        color: $textColorWhite;
+        font-weight: bolder;
+        margin: 10px;
+      }
+      p {
+        font-size: 20px;
+      }
     }
     .task {
-      background-color: purple;
+      font-size: 20px;
+      p {
+        margin-right: 20px;
+        opacity: 0.7;
+      }
+      i {
+        margin-right: 10px;
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.addTask {
+  background-color: #aa4242;
+  color: $textColorWhite;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    cursor: pointer;
+    i {
+      margin-right: 10px;
+
+      color: #aa4242;
+      background-color: $textColorWhite;
+      width: 30px;
+      height: 30px;
+      font-size: 25px;
+      line-height: 30px;
+      border-radius: 100%;
+      opacity: 0.7;
+    }
+    button {
+      font-size: 20px;
+    }
+  }
+}
+
+.openTask {
+  background-color: #fff;
+  border-radius: 10px;
+  margin-top: 10px;
+  .text {
+    input {
+      width: 90%;
+      border-radius: 5px;
+      font-size: 30px;
+      opacity: 0.7;
+      font-style: italic;
+      margin: 20px 0;
+    }
+    p {
+      font-size: 20px;
+      font-weight: 800;
+      width: 90%;
+      text-align: start;
+      margin: 0 30px;
+    }
+  }
+
+  .addValue {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 25px;
+    input {
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+      font-size: 30px;
+      margin: 20px 0;
+      background-color: #efefef;
+    }
+    button {
+      width: 50px;
+      height: 50px;
+      margin-left: 10px;
+      color: gray;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+  }
+
+  .saveOrcancel {
+    background-color: #efefef;
+    height: 100px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 20px;
+
+    button {
+      opacity: 0.7;
+      width: 100px;
+      height: 50px;
+      margin-right: 20px;
+    }
+
+    .save {
+      background-color: black;
+      border-radius: 5px;
+      color: #fff;
     }
   }
 }
