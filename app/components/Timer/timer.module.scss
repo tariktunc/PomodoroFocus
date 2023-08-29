@@ -1,0 +1,72 @@
+.container {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  color: white;
+}
+
+.timer {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 4rem 1rem 4rem;
+}
+
+.button {
+  button {
+    margin: 0 1rem 0 1rem;
+    width: 100px;
+    height: 30px;
+  }
+  button:hover {
+    border-radius: 5px;
+  }
+
+  .buttonActive {
+    background-color: purple;
+    border-radius: 5px;
+  }
+}
+
+.time {
+  font-size: 10rem;
+}
+
+.start {
+  background-color: white;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  button {
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+    color: #ba4949;
+  }
+
+  button:hover {
+    border-radius: 5px;
+    font-size: 28px;
+    transition: 0.1s;
+  }
+}
+
+.level {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.tasksLevel {
+  width: 100%;
+  margin: 10px 0 20px 0;
+  text-align: center;
+}

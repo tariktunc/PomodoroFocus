@@ -1,0 +1,17 @@
+.header {
+  background-color: #fff;
+}
+
+.tasks {
+  display: flex;
+  .headerOrTask {
+    width: 600px;
+    background-color: red;
+    .tasksHeader {
+      background-color: yellow;
+    }
+    .task {
+      background-color: purple;
+    }
+  }
+}
