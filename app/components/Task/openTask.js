@@ -20,8 +20,11 @@ export default function openTask() {
       </div>
 
       <div className={Task.saveOrcancel}>
-        <button className={Task.cancel}>Cancel</button>
-        <button className={Task.save}>Save</button>
+        <button className={Task.delete}>Delete</button>
+        <div>
+          <button className={Task.cancel}>Cancel</button>
+          <button className={Task.save}>Save</button>
+        </div>
       </div>
     </div>
   );

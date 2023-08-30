@@ -13,3 +13,8 @@ body {
   background-color: #ba4949;
   font-weight: bold;
 }
+
+.buttonActive {
+  background-color: purple;
+  border-radius: 5px;
+}
