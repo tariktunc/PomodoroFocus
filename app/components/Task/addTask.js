@@ -1,9 +1,9 @@
 import React from "react";
-import Task from "./task.module.scss";
+import TaskCss from "./task.module.scss";
 
-export default function addTask() {
+export default function AddTask() {
   return (
-    <div className={Task.addTask}>
+    <div className={TaskCss.addTask}>
       <div>
         <i className="fa-solid fa-plus"></i>
         <p>Add Task</p>

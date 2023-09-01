@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "./button";
 import Script from "next/script";
 
 export default function header() {
@@ -9,9 +8,14 @@ export default function header() {
         <i class="fa-solid fa-heart pr-2 text-white"></i>
         <p className="text-2xl text-white">Pomodoro Focus</p>
       </div>
+
       <div className="flex items-center ">
-        <Button text="Report" />
-        <Button text="Setting" />
+        <p className="bg-[#C86D6D] hover:bg-white-100 hover:bg-blue-100 transition-all w-20 h-6 m-1 text-white">
+          Report
+        </p>
+        <p className="bg-[#C86D6D] hover:bg-white-100 hover:bg-blue-100 transition-all w-20 h-6 m-1 text-white">
+          Settings
+        </p>
       </div>
 
       <Script

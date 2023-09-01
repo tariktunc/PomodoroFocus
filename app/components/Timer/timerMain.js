@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Timer from "./timer.module.scss";
+import TimerCss from "./timer.module.scss";
 
 export default function TimerMain(props) {
   const [activeButton, setActiveButton] = useState("pomodoro");
@@ -30,30 +30,34 @@ export default function TimerMain(props) {
   };
 
   return (
-    <div className={Timer.timer}>
-      <div className={Timer.button}>
-        <button
-          className={activeButton === "pomodoro" ? "buttonActive" : ""}
-          onClick={() => handleClickButton("pomodoro")}>
-          {props.pomodoro}
-        </button>
-        <button
-          className={activeButton === "shortBreak" ? "buttonActive" : ""}
-          onClick={() => handleClickButton("shortBreak")}>
-          {props.shortBreak}
-        </button>
-        <button
-          className={activeButton === "longBreak" ? "buttonActive" : ""}
-          onClick={() => handleClickButton("longBreak")}>
-          {props.longBreak}
-        </button>
-      </div>
+    <div className={TimerCss.container}>
+      <div className={TimerCss.timer}>
+        <div className={TimerCss.button}>
+          <button
+            className={activeButton === "pomodoro" ? "buttonActive" : ""}
+            onClick={() => handleClickButton("pomodoro")}>
+            {props.pomodoro}
+          </button>
+          <button
+            className={activeButton === "shortBreak" ? "buttonActive" : ""}
+            onClick={() => handleClickButton("shortBreak")}>
+            {props.shortBreak}
+          </button>
+          <button
+            className={activeButton === "longBreak" ? "buttonActive" : ""}
+            onClick={() => handleClickButton("longBreak")}>
+            {props.longBreak}
+          </button>
+        </div>
 
-      <div className={Timer.time}>{props.remainingTime}</div>
+        <div className={TimerCss.time}>{props.remainingTime}</div>
 
-      <div className={Timer.start}>
-        <button>{props.start}</button>
+        <div className={TimerCss.start}>
+          <button>{props.start}</button>
+        </div>
       </div>
+      <div className={TimerCss.level}>{props.level}</div>
+      <div className={TimerCss.tasksLevel}>{props.taskLevel}</div>
     </div>
   );
 }
