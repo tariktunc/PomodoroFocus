@@ -1,7 +1,20 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Task from "./task.module.scss";
 
 export default function OpenTask(props) {
+  const [count, setCount] = useState(1);
+
+  const handleClick = (e) => {
+    switch (e.target.value) {
+      case "up":
+        count < 99 ? setCount(count + 1) : count;
+        break;
+      case "down":
+        count > 0 ? setCount(count - 1) : count;
+        break;
+    }
+  };
   return (
     <div className={Task.openTask}>
       {/* This pomodoro INPUT */}
@@ -13,14 +26,20 @@ export default function OpenTask(props) {
 
       {/* NUMBERS UP AND DOWN */}
       <div className={Task.addValue}>
-        <input type="number" value={props.openTaskValue} />
+        <input type="number" onChange={() => handleChange(e)} value={count} />
         {/* UP ARROW */}
-        <button>
-          <i class="fa-solid fa-up-long"></i>
+        <button value="up" onClick={handleClick}>
+          <i
+            className="fa-solid fa-up-long"
+            onClick={(e) => e.target.parentNode.click()}
+          />
         </button>
         {/* DOWN ARROW */}
-        <button>
-          <i class="fa-solid fa-down-long"></i>
+        <button value="down" onClick={handleClick}>
+          <i
+            className="fa-solid fa-down-long"
+            onClick={(e) => e.target.parentNode.click()}
+          />
         </button>
       </div>
 

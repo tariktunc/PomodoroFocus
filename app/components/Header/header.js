@@ -5,7 +5,7 @@ export default function header() {
   return (
     <div className="flex justify-between text-center items-center px-20 w-full h-20">
       <div className="flex items-center">
-        <i class="fa-solid fa-heart pr-2 text-white"></i>
+        <i className="fa-solid fa-heart pr-2 text-white"></i>
         <p className="text-2xl text-white">Pomodoro Focus</p>
       </div>
 
