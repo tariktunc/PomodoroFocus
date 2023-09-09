@@ -76,17 +76,17 @@ export default function TimerMain(props) {
           <button
             className={activeButton === "pomodoro" ? "buttonActive" : ""}
             onClick={() => handleClickButton("pomodoro")}>
-            {props.pomodoro}
+            Pomodoro
           </button>
           <button
             className={activeButton === "shortBreak" ? "buttonActive" : ""}
             onClick={() => handleClickButton("shortBreak")}>
-            {props.shortBreak}
+            Short Break
           </button>
           <button
             className={activeButton === "longBreak" ? "buttonActive" : ""}
             onClick={() => handleClickButton("longBreak")}>
-            {props.longBreak}
+            Long Break
           </button>
         </div>
 
@@ -101,8 +101,8 @@ export default function TimerMain(props) {
         </div>
       </div>
 
-      <div className={TimerCss.level}>{props.level}</div>
-      <div className={TimerCss.tasksLevel}>{props.taskLevel}</div>
+      <div className={TimerCss.level}>1</div>
+      <div className={TimerCss.tasksLevel}>Burasi taskin header alanidir</div>
     </div>
   );
 }

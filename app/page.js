@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Header from "./components/Header/header";
 import Timer from "./components/Timer/timer";
@@ -6,21 +8,13 @@ import AddTask from "./components/Task/addTask";
 import OpenTask from "./components/Task/openTask";
 import BeforeTask from "./components/Task/beforeTask";
 
-export default function Home() {
+export default function Home(props) {
   return (
     <div>
-      <Header />
+      <Header pmNum={25} sbNum={5} lbNum={11} />
 
       <div className="flex flex-col items-center">
-        {/* Timer */}
-        <Timer
-          pomodoro="Pomodoro"
-          shortBreak="Short Break"
-          longBreak="Long Break"
-          remainingTime="25"
-          level="#1"
-          taskLevel="Burasi taskin header alanidir"
-        />
+        <Timer />
 
         {/* ADD TASK */}
         <div className="text-center h-full w-[600px] ">
