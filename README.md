@@ -1,1 +1,1 @@
-Live Demo : https://vercel.com/tariktunc/pomodoro-focus
+Live Demo : https://pomodoro-focus-rust.vercel.app/
