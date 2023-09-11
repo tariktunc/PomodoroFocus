@@ -38,17 +38,26 @@
   border-radius: 5px;
   cursor: pointer;
 
-  button {
+  .sprButton {
     width: 100%;
     height: 100%;
     font-size: 30px;
     color: #ba4949;
   }
 
-  button:hover {
+  .sprButton:hover {
     border-radius: 5px;
     font-size: 28px;
     transition: 0.1s;
+  }
+
+  .reset {
+    background-color: rgba(255, 0, 0, 0.548);
+    width: 100px;
+    position: absolute;
+    top: 48%;
+    left: 60%;
+    transform: translate(-50%, -50%);
   }
 }
 

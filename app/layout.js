@@ -1,4 +1,7 @@
+"use client";
+import { Provider } from "react-redux";
 import "./globals.css";
+import store from "../Redux/store";
 
 export const metadata = {
   title: {
@@ -10,7 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <Provider store={store}>
+        <body>{children}</body>
+      </Provider>
     </html>
   );
 }

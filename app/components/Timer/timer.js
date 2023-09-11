@@ -1,51 +1,84 @@
 "use client";
+
+"use client";
 import React, { useState, useEffect } from "react";
 import TimerCss from "./timer.module.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { setActiveTimer } from "@/Redux/Slices/timerSlice";
+
+const pomodoroColor = "#ba4949";
+const shortBreakColor = "#38858A";
+const longBreakColor = "#7D53A2";
 
 export default function TimerMain(props) {
+  const dispatch = useDispatch();
+  const { pomoTime, shortBreak, longBreak, activeTimer } = useSelector(
+    (state) => state.timerSetting
+  );
+
   const [activeButton, setActiveButton] = useState("pomodoro");
-  const [minutes, setMinutes] = useState(10);
+  const [minutes, setMinutes] = useState(pomoTime);
   const [seconds, setSeconds] = useState(0);
-  const [pause, setPause] = useState("Start");
+  const [timerStatus, setTimerStatus] = useState("Start");
   const [intervalId, setIntervalId] = useState(null);
-  const [isPaused, setIsPaused] = useState(true);
 
   useEffect(() => {
-    if (activeButton === "pomodoro") {
-      document.body.style.backgroundColor = "#ba4949";
-    } else if (activeButton === "shortBreak") {
-      document.body.style.backgroundColor = "#38858A";
-    } else if (activeButton === "longBreak") {
-      document.body.style.backgroundColor = "#7D53A2";
-    } else {
-      document.body.style.backgroundColor = "";
+    let bgColor = "";
+    switch (activeButton) {
+      case "pomodoro":
+        setMinutes(pomoTime);
+        bgColor = pomodoroColor;
+        break;
+      case "shortBreak":
+        setMinutes(shortBreak);
+        bgColor = shortBreakColor;
+        break;
+      case "longBreak":
+        setMinutes(longBreak);
+        bgColor = longBreakColor;
+        break;
+      default:
+        break;
     }
+    document.body.style.backgroundColor = bgColor;
+    document.body.style.transition = "1s";
 
     return () => {
       document.body.style.backgroundColor = "";
     };
-  }, [activeButton]);
+  }, [activeButton, pomoTime, shortBreak, longBreak]);
 
   const handleClickButton = (buttonName) => {
     setActiveButton(buttonName);
+  };
+
+  const handleRestart = () => {
+    setMinutes(pomoTime); // Pomodoro süresini başlangıçta ayarlayın
+    setSeconds(0); // Saniyeleri sıfırlayın
+    setTimerStatus("Start"); // Timer durumu "Start" olarak ayarlayın
+    startTimer(pomoTime * 60); // Pomodoro süresi ile yeni bir sayaç başlatın
+    clearInterval(intervalId); // Mevcut zamanlayıcıyı temizleyin
   };
 
   const handleStart = () => {
     const totalSeconds = minutes * 60;
     let remainingSeconds = totalSeconds;
 
-    switch (pause) {
+    switch (timerStatus) {
       case "Start":
-        setPause("Pause");
+        setTimerStatus("Pause");
         startTimer(remainingSeconds);
         break;
       case "Pause":
-        setPause("Resume");
+        setTimerStatus("Resume");
         clearInterval(intervalId);
         break;
       case "Resume":
-        setPause("Pause");
+        setTimerStatus("Restart");
         startTimer(minutes * 60 + seconds - 1);
+        break;
+      case "Restart":
+        handleRestart(); // Restart işlemi için handleRestart fonksiyonunu çağırın
         break;
       default:
         break;
@@ -57,7 +90,6 @@ export default function TimerMain(props) {
       if (remainingSeconds <= 0) {
         clearInterval(interval);
       } else {
-        setIsPaused(remainingSeconds);
         const newMinutes = Math.floor(remainingSeconds / 60);
         const newSeconds = remainingSeconds % 60;
         setMinutes(newMinutes);
@@ -96,7 +128,22 @@ export default function TimerMain(props) {
 
         <div className={TimerCss.start}>
           <div>
-            <button onClick={handleStart}>{pause}</button>
+            <button className={TimerCss.sprButton} onClick={handleStart}>
+              {timerStatus}
+            </button>
+
+            {timerStatus !== "Start" ? (
+              <button
+                className={TimerCss.reset}
+                onClick={handleRestart}
+                value="Restart">
+                Reset
+              </button>
+            ) : (
+              ""
+            )}
+
+            
           </div>
         </div>
       </div>
