@@ -1,6 +1,5 @@
 "use client";
 
-"use client";
 import React, { useState, useEffect } from "react";
 import TimerCss from "./timer.module.scss";
 import { useSelector, useDispatch } from "react-redux";
@@ -142,8 +141,6 @@ export default function TimerMain(props) {
             ) : (
               ""
             )}
-
-            
           </div>
         </div>
       </div>

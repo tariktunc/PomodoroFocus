@@ -2,11 +2,9 @@
 "use client";
 
 import { configureStore } from "@reduxjs/toolkit";
-import counterSlice from "./Slices/counterSlice";
 import timerSlice from "./Slices/timerSlice";
 
 const reducer = {
-  counter: counterSlice, // counterReducer
   timerSetting: timerSlice,
 };
 
