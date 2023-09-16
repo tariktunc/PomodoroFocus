@@ -11,7 +11,7 @@ import BeforeTask from "./components/Task/beforeTask";
 export default function Home(props) {
   return (
     <div>
-      <Header pmNum={25} sbNum={5} lbNum={11} />
+      <Header />
 
       <div className="flex flex-col items-center">
         <Timer />

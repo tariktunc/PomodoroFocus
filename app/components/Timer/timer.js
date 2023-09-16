@@ -3,87 +3,32 @@
 import React, { useState, useEffect } from "react";
 import TimerCss from "./timer.module.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { setActiveTimer } from "@/Redux/Slices/timerSlice";
-
-const pomodoroColor = "#ba4949";
-const shortBreakColor = "#38858A";
-const longBreakColor = "#7D53A2";
+import { resetPomoCount, incPomoCount } from "@/Redux/Slices/timerSlice";
 
 export default function TimerMain(props) {
+  //! Dispatch
   const dispatch = useDispatch();
-  const { pomoTime, shortBreak, longBreak, activeTimer } = useSelector(
-    (state) => state.timerSetting
-  );
-
-  const [activeButton, setActiveButton] = useState("pomodoro");
+  //! Selector
+  const {
+    taskName,
+    pomoCounter,
+    pomoTime,
+    shortBreak,
+    longBreak,
+    activeTimer,
+  } = useSelector((state) => state.timerSetting);
+  //! useState`s
   const [minutes, setMinutes] = useState(pomoTime);
   const [seconds, setSeconds] = useState(0);
-  const [timerStatus, setTimerStatus] = useState("Start");
-  const [intervalId, setIntervalId] = useState(null);
 
-  useEffect(() => {
-    let bgColor = "";
-    switch (activeButton) {
-      case "pomodoro":
-        setMinutes(pomoTime);
-        bgColor = pomodoroColor;
-        break;
-      case "shortBreak":
-        setMinutes(shortBreak);
-        bgColor = shortBreakColor;
-        break;
-      case "longBreak":
-        setMinutes(longBreak);
-        bgColor = longBreakColor;
-        break;
-      default:
-        break;
-    }
-    document.body.style.backgroundColor = bgColor;
-    document.body.style.transition = "1s";
-
-    return () => {
-      document.body.style.backgroundColor = "";
-    };
-  }, [activeButton, pomoTime, shortBreak, longBreak]);
-
-  const handleClickButton = (buttonName) => {
-    setActiveButton(buttonName);
-  };
-
-  const handleRestart = () => {
-    setMinutes(pomoTime); // Pomodoro süresini başlangıçta ayarlayın
-    setSeconds(0); // Saniyeleri sıfırlayın
-    setTimerStatus("Start"); // Timer durumu "Start" olarak ayarlayın
-    startTimer(pomoTime * 60); // Pomodoro süresi ile yeni bir sayaç başlatın
-    clearInterval(intervalId); // Mevcut zamanlayıcıyı temizleyin
-  };
-
+  // ------------------ TIMER START ------------
   const handleStart = () => {
     const totalSeconds = minutes * 60;
     let remainingSeconds = totalSeconds;
-
-    switch (timerStatus) {
-      case "Start":
-        setTimerStatus("Pause");
-        startTimer(remainingSeconds);
-        break;
-      case "Pause":
-        setTimerStatus("Resume");
-        clearInterval(intervalId);
-        break;
-      case "Resume":
-        setTimerStatus("Restart");
-        startTimer(minutes * 60 + seconds - 1);
-        break;
-      case "Restart":
-        handleRestart(); // Restart işlemi için handleRestart fonksiyonunu çağırın
-        break;
-      default:
-        break;
-    }
+    startTimer(remainingSeconds);
   };
 
+  // ------------------ TIMER COUNTER ------------
   const startTimer = (remainingSeconds) => {
     const interval = setInterval(() => {
       if (remainingSeconds <= 0) {
@@ -97,56 +42,51 @@ export default function TimerMain(props) {
         console.log(remainingSeconds);
       }
     }, 1000);
-    setIntervalId(interval);
   };
+
+  // ------------------ POMODO COUNTER RESET  ------------
+  function resPomoCounter() {
+    let text = "Tasks Restart ?";
+    // confirm() alert method.
+    if (confirm(text) === true) {
+      dispatch(resetPomoCount());
+      alert("Okey");
+    } else {
+      alert("TASKS CANCEL");
+    }
+  }
 
   return (
     <div className={TimerCss.container}>
       <div className={TimerCss.timer}>
+        {/*------------------ POMO SHORT LONG BUTTON ------------*/}
         <div className={TimerCss.button}>
-          <button
-            className={activeButton === "pomodoro" ? "buttonActive" : ""}
-            onClick={() => handleClickButton("pomodoro")}>
-            Pomodoro
-          </button>
-          <button
-            className={activeButton === "shortBreak" ? "buttonActive" : ""}
-            onClick={() => handleClickButton("shortBreak")}>
-            Short Break
-          </button>
-          <button
-            className={activeButton === "longBreak" ? "buttonActive" : ""}
-            onClick={() => handleClickButton("longBreak")}>
-            Long Break
-          </button>
+          <button className="buttonActive">Pomodoro</button>
+          <button>Short Break</button>
+          <button>Long Break</button>
         </div>
 
+        {/*------------------ TIMER ------------*/}
         <div className={TimerCss.time}>
           {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
         </div>
 
+        {/*------------------ START PAUSE RESET BUTTON ------------*/}
         <div className={TimerCss.start}>
-          <div>
-            <button className={TimerCss.sprButton} onClick={handleStart}>
-              {timerStatus}
+          <div className={TimerCss.startResetButton}>
+            <button className={TimerCss.startButton}>Start</button>
+            <button className={TimerCss.resetButton}>
+              <i className="fa-solid fa-forward-step" />
             </button>
-
-            {timerStatus !== "Start" ? (
-              <button
-                className={TimerCss.reset}
-                onClick={handleRestart}
-                value="Restart">
-                Reset
-              </button>
-            ) : (
-              ""
-            )}
           </div>
         </div>
       </div>
-
-      <div className={TimerCss.level}>1</div>
-      <div className={TimerCss.tasksLevel}>Burasi taskin header alanidir</div>
+      {/*------------------ POMODO COUNTER  ------------*/}
+      <button className={TimerCss.level} onClick={resPomoCounter}>
+        {pomoCounter}
+      </button>
+      {/*------------------ TASK NAME ------------*/}
+      <div className={TimerCss.tasksLevel}>{taskName}</div>
     </div>
   );
 }

@@ -5,10 +5,13 @@ import { createSlice } from "@reduxjs/toolkit";
 export const timerSlice = createSlice({
   name: "timerSetting",
   initialState: {
-    pomoTime: 25,
-    shortBreak: 5,
-    longBreak: 10,
+    pomoTime: 25, // time
+    shortBreak: 5, // time
+    longBreak: 10, // time
+    pomoCounter: 5, // Yapilan pomodor sayisi
+    taskName: "Burasi taskin header alanidir",
   },
+
   reducers: {
     setPomoTime: (state, action) => {
       state.pomoTime = action.payload;
@@ -22,9 +25,25 @@ export const timerSlice = createSlice({
     setActiveTimer: (state, action) => {
       state.activeTimer = action.payload;
     },
+    incPomoCount: (state) => {
+      state.pomoCounter += 1;
+    },
+    resetPomoCount: (state) => {
+      state.pomoCounter = 1;
+    },
+    taskName: (state, aciton) => {
+      state.taskName = action.payload;
+    },
   },
 });
 
-export const { setPomoTime, setShortBreak, setLongBreak, setActiveTimer } =
-  timerSlice.actions;
+export const {
+  taskName,
+  resetPomoCount,
+  incPomoCount,
+  setPomoTime,
+  setShortBreak,
+  setLongBreak,
+  setActiveTimer,
+} = timerSlice.actions;
 export default timerSlice.reducer;
