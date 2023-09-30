@@ -1,3 +1,5 @@
+<a href="https://github.com/Blakfy/studytimer">The new address of the project.</a>
+
 Study Timer, bir pomodoro uygulamasidir. Isteyen herkes projeye destek verebilir. Ortak calismak ve gelistirmek isteyenler blakfy@hotmail.com uzerinden iletisime gecebilirsiniz.
 
 npm run dev # or yarn dev # or pnpm dev
