@@ -1,141 +1,151 @@
 $background1: rgb(186, 73, 73);
+$mainWidth: 500px;
+$mainHeight: 60px;
+$mainBorder: 5px;
 
-.tasks {
-  padding-bottom: 10px;
+.todoList {
+  width: $mainWidth;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .headerOrTask {
-    width: 600px;
-    height: 60px;
+.tasks,
+.Endtasks {
+  width: $mainWidth;
+  display: flex;
+  margin: 5px 0;
+  height: $mainHeight;
+  background-color: #fff;
+  border-radius: 5px;
+
+  .tasksText {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+    padding: 10px;
+    width: 80%;
+    img {
+      margin-left: 5px;
+    }
+    p {
+      margin-left: 10px;
+    }
+  }
+
+  .task {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: #fff;
-    border-radius: 5px 7px 7px 5px;
-    border-left: 5px solid black;
-
-    .tasksHeader,
-    .task {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100px;
-      height: 50px;
-      font-size: 20px;
+    justify-content: center;
+    width: 20%;
+    i,
+    p {
+      margin-right: 10px;
     }
-
-    .tasksHeader {
-      i {
-        background-color: rgb(223, 223, 223);
-        width: 1.8rem;
-        height: 1.8rem;
-        line-height: 1.8rem;
-        border-radius: 100%;
-        color: #fff;
-        font-weight: bolder;
-        margin: 10px;
-      }
-      p {
-        font-size: 20px;
-      }
+    i {
+      font-size: 30px;
     }
+  }
+}
 
-    .task {
-      p,
-      i {
-        margin-right: 20px;
-        opacity: 0.7;
-      }
-    }
+.Endtasks {
+  opacity: 0.8;
+
+  .tasksText {
+    text-decoration: line-through;
+    text-decoration-style: dash;
   }
 }
 
 .addTask {
-  background-color: #ffffff1f;
-  color: #fff;
-
+  margin-top: 10px;
+  width: $mainWidth;
+  border-radius: $mainBorder;
+  height: $mainHeight;
+  border: 2px dashed #fff;
   div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70px;
-    cursor: pointer;
-
-    i {
-      margin-right: 10px;
-      background-color: #ffffff1f;
-      width: 30px;
-      height: 30px;
-      font-size: 25px;
-      line-height: 30px;
-      border-radius: 100%;
-      opacity: 0.7;
-    }
-
+    height: 100%;
     button {
-      font-size: 20px;
+      background-color: hsla(0, 60%, 60%, 0.5);
+      opacity: 0.8;
+      color: hsla(0, 0%, 100%, 1);
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.3;
+        transition: opacity 0.6s;
+      }
     }
   }
 }
 
-.openTask {
+.newTask {
+  width: $mainWidth;
+  border-radius: $mainBorder;
   background-color: #fff;
-  border-radius: 10px;
-  margin: 10px 0;
+  margin-top: 20px;
 
-  .text {
-    input {
-      width: 90%;
-      border-radius: 5px;
-      font-size: 30px;
-      opacity: 0.7;
-      font-style: italic;
-      margin: 20px 0;
+  .inputValue {
+    height: 100%;
+    margin-left: 20px;
+    margin-bottom: 10px;
+
+    .newItemText {
+      height: 50px;
+      width: 100%;
+      font-size: 16px;
     }
-    p {
-      font-size: 20px;
-      font-weight: 800;
-      width: 90%;
-      text-align: left;
-      margin: 0 30px;
+    .newItemText:focus {
+      outline: none;
     }
   }
 
-  .addValue {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    margin-left: 25px;
-
-    input[type="number"]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
+  .setNumber {
+    margin-left: 20px;
+    .title {
+      opacity: 0.8;
     }
 
-    input[type="number"]:focus {
-      outline: none; /* Remove the outline (black border) */
-    }
+    .values {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgb(200, 200, 200);
+        border-radius: 2px;
+        text-align: center;
+        font-size: 16px;
+        opacity: 0.9;
+      }
 
-    input {
-      width: 40px;
-      font-size: 30px;
-      margin: 30px 0;
-    }
-
-    button {
-      width: 50px;
-      height: 50px;
-      margin-left: 10px;
-      color: gray;
-      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      button {
+        background-color: #f2f2f2;
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        margin: 5px;
+        img {
+          margin: 10px;
+          opacity: 0.8;
+        }
+      }
     }
   }
 
   .saveOrcancel {
     background-color: #efefef;
-    height: 100px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
 
     button {
       opacity: 0.7;
@@ -149,5 +159,77 @@ $background1: rgb(186, 73, 73);
       border-radius: 5px;
       color: #fff;
     }
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .todoList {
+    width: 400px;
+    font-size: 14px;
+  }
+  .tasks {
+    width: 400px;
+    font-size: 14px;
+  }
+  .addTask {
+    width: 400px;
+    font-size: 14px;
+  }
+  .Endtasks {
+    width: 400px;
+    font-size: 14px;
+  }
+  .newTask {
+    width: 400px;
+    font-size: 14px;
+    .setNumber {
+      .values {
+        .number {
+          font-size: 15px;
+          width: 60px;
+        }
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #f2f2f2;
+          width: 60px;
+          height: 40px;
+          border-radius: 5px;
+        }
+      }
+    }
+    .saveOrcancel {
+      button {
+        opacity: 0.7;
+        width: 70px;
+        height: 40px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  $mobil400pxwidth: 350px;
+  $mobil400pxText: 12px;
+  .todoList {
+    width: $mobil400pxwidth;
+    font-size: $mobil400pxText;
+  }
+  .tasks {
+    width: $mobil400pxwidth;
+    font-size: $mobil400pxText;
+  }
+  .addTask {
+    width: $mobil400pxwidth;
+    font-size: $mobil400pxText;
+  }
+  .Endtasks {
+    width: $mobil400pxwidth;
+    font-size: $mobil400pxText;
+  }
+  .newTask {
+    width: $mobil400pxwidth;
+    font-size: $mobil400pxText;
   }
 }

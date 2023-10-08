@@ -1,0 +1,247 @@
+$whiteColor: white;
+$lineColor: rgba(0, 0, 0, 0.3);
+$inputBgColor: rgba(0, 0, 0, 0.1);
+$buttonColorBlack: rgba(10, 10, 10, 0.9);
+$buttonColorBlackHover: rgba(0, 0, 0, 0.8);
+
+.settings {
+  width: 500px;
+  height: 100%;
+  margin: 5px 0 25px 0;
+  border-bottom: 1px solid $whiteColor;
+  opacity: 0.8;
+  div:nth-child(1) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 10px;
+    color: $whiteColor;
+
+    a {
+      font-size: 20px;
+      opacity: 0.9;
+    }
+    a:hover {
+      opacity: 1;
+    }
+    div {
+      button {
+        height: 30px;
+        width: 80px;
+        margin-left: 10px;
+        font-size: 14px;
+        background-color: hsla(0, 0%, 100%, 0.2);
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: hsla(0, 0%, 100%, 0.4);
+      }
+    }
+  }
+}
+
+.setting {
+  background-color: hsla(0, 0, 0, 0.4);
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: auto;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  align-items: center;
+  .container {
+    background-color: $whiteColor;
+    width: 400px;
+    padding: 0 1rem;
+    .headerTitle {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 2px solid $lineColor;
+    }
+
+    .timerSettting {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      div {
+        text-align: center;
+        p {
+          opacity: 0.7;
+        }
+        input {
+          padding: 0.5rem;
+          opacity: 0.7;
+          width: 80px;
+          height: 40px;
+          background-color: $inputBgColor;
+          border-radius: 5px;
+          &:focus {
+            outline: none;
+          }
+          // input tiklandiginda artirmak ve azaltmak icin kullanilan butonlari tasarla.
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            height: 30px;
+          }
+        }
+      }
+    }
+
+    .longBreakInterval {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      p {
+        opacity: 0.7;
+        padding: 0.5rem;
+      }
+      input {
+        padding: 0.5rem;
+        opacity: 0.7;
+        width: 80px;
+        height: 40px;
+        background-color: $inputBgColor;
+        border-radius: 5px;
+
+        &:focus {
+          outline: none;
+        }
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          height: 30px;
+        }
+      }
+    }
+
+    .themesetting {
+      div {
+        margin: 5px 0 20px 0;
+        opacity: 0.8;
+        display: flex;
+        justify-content: space-between;
+        a {
+          height: 100%;
+          margin: 15px;
+          border-bottom: 1px solid $whiteColor;
+          opacity: 0.8;
+        }
+        div {
+          button {
+            border-radius: 20%;
+            height: 30px;
+            width: 30px;
+            text-align: center;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+          }
+
+          & > :nth-child(1) {
+            background-color: #ba4949;
+          }
+          & > :nth-child(2) {
+            background-color: #38858a;
+          }
+          & > :nth-child(3) {
+            background-color: #397097;
+          }
+        }
+      }
+    }
+
+    .colorsetting {
+      div {
+        width: 500px;
+        height: 100%;
+        margin: 5px 0 20px 0;
+        button {
+          border: none;
+          border-radius: 20%;
+          padding: 18px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          margin: 10px 2px;
+          cursor: pointer;
+        }
+        button:nth-child(2) {
+          background-color: #ba4949;
+        }
+        button:nth-child(3) {
+          background-color: #38858a;
+        }
+        button:nth-child(4) {
+          background-color: #397097;
+        }
+        button:nth-child(5) {
+          background-color: #babec2;
+        }
+        button:nth-child(6) {
+          background-color: #c113c7;
+        }
+        button:nth-child(7) {
+          background-color: #2ae211;
+        }
+        button:nth-child(8) {
+          margin-left: 50%;
+          background-color: $buttonColorBlack;
+          color: $whiteColor;
+        }
+      }
+    }
+
+    .audiosettings {
+      div {
+        width: 500px;
+        height: 100%;
+        margin: 15px;
+        opacity: 0.8;
+      }
+    }
+
+    .modal {
+      height: 50px;
+      display: flex;
+      justify-content: flex-end;
+      margin: 10px;
+      button {
+        margin: 0 20px;
+        width: 100px;
+        height: 50px;
+      }
+      button:nth-child(1) {
+        background-color: $buttonColorBlack;
+        border-radius: 5px;
+        color: $whiteColor;
+      }
+      button:nth-child(2) {
+        background-color: $buttonColorBlack;
+        border-radius: 5px;
+        color: $whiteColor;
+      }
+      button:nth-child(1):hover,
+      button:nth-child(2):hover {
+        opacity: 0.8;
+        cursor: crosshair;
+        font-size: 17px;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .settings {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .settings {
+    width: 350px;
+  }
+}

@@ -2,15 +2,28 @@
 "use client";
 
 import { configureStore } from "@reduxjs/toolkit";
-import timerSlice from "./Slices/timerSlice";
+import timerReducer from "./Slices/timerSlice";
+import taskSlice from "./Slices/taskSlice";
+import {
+  loadStateFromLocalStorage,
+  saveStateToLocalStorage,
+} from "./localStroge";
+
+const persistedState = loadStateFromLocalStorage();
 
 const reducer = {
-  timerSetting: timerSlice,
+  timerSetting: timerReducer,
+  dataAnalysis: taskSlice,
 };
 
 const store = configureStore({
   reducer,
   devTools: true,
+  preloadedState: persistedState,
+});
+
+store.subscribe(() => {
+  saveStateToLocalStorage(store.getState());
 });
 
 export default store;

@@ -1,49 +1,32 @@
-"use client";
-
 import { createSlice } from "@reduxjs/toolkit";
 
 export const timerSlice = createSlice({
   name: "timerSetting",
   initialState: {
-    pomoTime: 25, // time
-    shortBreak: 5, // time
-    longBreak: 10, // time
-    pomoCounter: 5, // Yapilan pomodor sayisi
-    taskName: "Burasi taskin header alanidir",
+    settings: {
+      pomodoroTime: 25,
+      shortBreakTime: 5,
+      longBreakTime: 10,
+      pomoCount: 0,
+      activeTask: "",
+      longBreakInterval: 4,
+    },
   },
-
   reducers: {
-    setPomoTime: (state, action) => {
-      state.pomoTime = action.payload;
-    },
-    setShortBreak: (state, action) => {
-      state.shortBreak = action.payload;
-    },
-    setLongBreak: (state, action) => {
-      state.longBreak = action.payload;
-    },
-    setActiveTimer: (state, action) => {
-      state.activeTimer = action.payload;
-    },
-    incPomoCount: (state) => {
-      state.pomoCounter += 1;
+    setTimerSettings: (state, action) => {
+      const { settingName, value } = action.payload;
+      state.settings[settingName] = value;
     },
     resetPomoCount: (state) => {
-      state.pomoCounter = 1;
+      state.settings.pomoCount = 0;
     },
-    taskName: (state, aciton) => {
-      state.taskName = action.payload;
+    incrementPomoCount: (state) => {
+      state.settings.pomoCount += 1;
     },
   },
 });
 
-export const {
-  taskName,
-  resetPomoCount,
-  incPomoCount,
-  setPomoTime,
-  setShortBreak,
-  setLongBreak,
-  setActiveTimer,
-} = timerSlice.actions;
+export const { setTimerSettings, resetPomoCount, incrementPomoCount } =
+  timerSlice.actions;
+
 export default timerSlice.reducer;

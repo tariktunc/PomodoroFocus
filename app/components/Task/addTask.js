@@ -1,12 +1,14 @@
+"use client";
 import React from "react";
-import TaskCss from "./task.module.scss";
+import Task from "./task.module.scss";
 
-export default function AddTask() {
+export default function AddTask({ onAdd }) {
+  // Cerezlere kaydi burada yapilacak.
+
   return (
-    <div className={TaskCss.addTask}>
-      <div>
-        <i className="fa-solid fa-plus"></i>
-        <p>Add Task</p>
+    <div className={Task.addTask}>
+      <div id="addTask">
+        <button onClick={() => onAdd()}>Add Task</button>
       </div>
     </div>
   );
