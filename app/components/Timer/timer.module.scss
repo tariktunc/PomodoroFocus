@@ -7,7 +7,7 @@ $mainWidth: 500px;
   color: white;
 
   .timer {
-    background: hsla(100%, 100%, 100%, 0.1);
+    background-color: hsla(100%, 100%, 100%, 0.1); // OBS
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -19,11 +19,12 @@ $mainWidth: 500px;
       display: flex;
       justify-content: center;
       width: 300px;
+      margin: 0 10px;
 
       button {
         width: 100%;
-        height: 30px;
-        margin: 10px;
+        height: 100%;
+        padding: 5px;
         font-size: 15px;
       }
     }
@@ -32,30 +33,26 @@ $mainWidth: 500px;
       font-size: 120px;
     }
 
-    .start {
+    .startResetButton {
       max-width: 500px;
       min-width: 400px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      .startResetButton {
-        height: 60px;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        margin-left: 50px;
+      button:nth-child(1) {
+        background-color: white;
+        width: 150px;
+        height: 100%;
+        border-radius: 5px;
+        font-size: 23px;
+      }
 
-        .startButton {
-          height: 50px;
-          width: 170px;
-          background-color: #fff;
-          font-size: 30px;
-          border-radius: 10px;
-          color: #ba4949;
-        }
-
-        .resetButton {
-          width: 70px;
-          height: 60px;
-        }
+      button:nth-child(2) {
+        position: absolute;
+        margin-left: 300px;
+        text-align: center;
       }
     }
   }
@@ -75,35 +72,37 @@ $mainWidth: 500px;
   }
 }
 
-@media screen and (max-width: 499px) {
-  .container {
-    .timer {
-      width: 400px;
-      .time {
-        font-size: 100px;
-      }
-      .button {
-        width: 300px;
-        button {
-          font-size: 13px;
-        }
+@media screen and (max-width: 510px) {
+  .container .timer {
+    width: 400px;
+
+    .time {
+      font-size: 100px;
+    }
+
+    .button {
+      width: 300px;
+
+      button {
+        font-size: 13px;
       }
     }
   }
 }
 
 @media screen and (max-width: 400px) {
-  .container {
-    .timer {
-      width: 350px;
-      .time {
-        font-size: 90px;
-      }
-      .button {
-        width: 300px;
-        button {
-          font-size: 13px;
-        }
+  .container .timer {
+    width: 350px;
+
+    .time {
+      font-size: 90px;
+    }
+
+    .button {
+      width: 300px;
+
+      button {
+        font-size: 13px;
       }
     }
   }
