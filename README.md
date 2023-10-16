@@ -1,9 +1,16 @@
-Study Timer, bir pomodoro uygulamasidir. Isteyen herkes projeye destek verebilir. Ortak calismak ve gelistirmek isteyenler blakfy@hotmail.com uzerinden iletisime gecebilirsiniz.
+<h1>Study Timer</h1>
 
-<a href="https://study-timerr.netlify.app">Live Stream</a>
+<p>Study Timer is a Pomodoro application that helps users manage their study or work time effectively. Anyone interested can contribute to the project. Those who want to collaborate and improve the application can contact us at tarktunc@hotmail.com.</p>
 
-npm run dev # or yarn dev # or pnpm dev
+<a href="https://studytimerr.netlify.app">Live Stream</a>
 
-Open http://localhost:3000 with your browser to see the result.
+Getting Started
+To get started with the development of Study Timer, follow these steps:
 
-You can start editing the page by modifying app/page.js. The page auto-updates as you edit the file.
+Clone the repository.
+Run npm run dev or yarn dev or pnpm dev in your terminal.
+Open http://localhost:3000 in your browser to see the application.
+We welcome all kinds of contributions. Feel free to raise issues, submit pull requests, or reach out to us for any queries or suggestions.
+
+Contact
+For any further information or collaboration requests, please reach out to us via email at <a href="mailto:tarktunc@hotmail.com">Send Email</a>.
