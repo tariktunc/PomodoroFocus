@@ -232,7 +232,7 @@ export default function TimerMain() {
           setSeconds(String(seconds).padStart(2, "0"));
           setTitle(`${activeTask} ${minutes}:${seconds}`);
         }
-      }, 1);
+      }, 1000);
       return () => clearInterval(interval);
     }
   }, [duration, isRunning, data]);
