@@ -6,6 +6,7 @@ import Nextbutton from "./nextButton";
 import { useSelector, useDispatch } from "react-redux";
 import { resetPomoCount, incrementPomoCount } from "@/Redux/Slices/timerSlice";
 import { incTaskCurrent } from "@/Redux/Slices/taskSlice";
+import { playSound } from "../Settings/Setting/AudioSettings/playAudio";
 
 export default function TimerMain() {
   const dispatch = useDispatch();
@@ -105,8 +106,11 @@ export default function TimerMain() {
       setIsActiveStatusButton("longBreak");
       setStartButtonColor(colorSettings.longBreakColor);
       setResetStatusName("longBreakTime");
+    } else {
+      return alert("Oh no, an error occurred. We're sorry for the inconvenience. Please refresh the page.");
     }
   };
+
 
   const startHandler = () => {
     setDuration(currentMinutes * 60 + currentSeconds);
@@ -219,9 +223,10 @@ export default function TimerMain() {
       let timer = duration;
       const interval = setInterval(() => {
         //! setInterval`in bitis suresi. TEST ASAMASINDA SUREYI BURADAN DEGISTIR
-        if (--timer <= 0) {
+        if (--timer <= 55) {
           // Timer Reset
           resetTimer();
+          playSound((localStorage.getItem("selectedSound") || "alarm"), (localStorage.getItem("selectedVolume") || 50));
           isCatogeryStatus(isStatus); // Task Count 0 != status ? Control Task Count
         } else {
           // Timer Function

@@ -200,9 +200,24 @@ $inputShadow: 2px 2px rgba(0, 0, 0, 0.2);
 				}
 			}
 			div:nth-child(4) {
-				opacity: 0.8;
 				display: flex;
 				justify-content: flex-end;
+				button {
+					background-color: $buttonColorBlack;
+					color: $whiteColor;
+					margin: 0 10px;
+					width: 150px;
+					height: 40px;
+					border-radius: 3px;
+				}
+				button:hover {
+					background-color: $buttonColorBlack;
+					border-radius: 3px;
+					color: $whiteColor;
+					cursor: pointer;
+					opacity: 0.8;
+					transition: 0.3s;
+				}
 			}
 		}
 

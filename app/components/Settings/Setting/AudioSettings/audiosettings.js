@@ -1,56 +1,42 @@
 import React, { useState, useEffect } from "react";
-import HeaderStyles from "../../header.module.scss";
-
-const SOUND_MAP = {
-  alarm: { name: "Alarm", file: "/Sound/alarm.mp3" },
-  churchBell: { name: "Church Bell", file: "/Sound/church-bell.mp3" },
-  copperBell: { name: "Copper Bell", file: "/Sound/copper-bell.mp3" },
-};
+import { playSound, stopSound, SOUND_MAP } from "./playAudio";
+import AudioCss from "../../header.module.scss";
 
 const Audiosettings = () => {
-  const [volume, setVolume] = useState(50);
-  const [selectedSound, setSelectedSound] = useState("alarm");
-  const [audioElement, setAudioElement] = useState(null);
+  const storedVolume = localStorage.getItem("selectedVolume");
+  const storedSound = localStorage.getItem("selectedSound");
+
+  const [volume, setVolume] = useState(storedVolume || 50);
+  const [selectedSound, setSelectedSound] = useState(storedSound || "alarm");
+
+  useEffect(() => {
+    // Herhangi bir değişiklikte localStorage'a kaydet
+    localStorage.setItem("selectedVolume", volume);
+  }, [volume]);
+
+  useEffect(() => {
+    // Herhangi bir değişiklikte localStorage'a kaydet
+    localStorage.setItem("selectedSound", selectedSound);
+  }, [selectedSound]);
 
   const handleVolumeChange = (event) => {
-    setVolume(event.target.value);
+    const selectedVolume = event.target.value;
+    setVolume(selectedVolume);
   };
 
   const handleSoundChange = (event) => {
     const selectedSound = event.target.value;
     setSelectedSound(selectedSound);
-
-    if (audioElement) {
-      audioElement.pause();
-      audioElement.currentTime = 0;
-    }
   };
 
-  const playSound = () => {
-    if (audioElement) {
-      audioElement.pause();
-      audioElement.currentTime = 0;
-    }
-
-    const audio = new Audio(SOUND_MAP[selectedSound].file);
-    audio.volume = volume / 100;
-    audio.play();
-    setAudioElement(audio);
+  const playSoundDemo = () => {
+    stopSound(); // Durdur ve sıfırla
+    playSound(selectedSound, volume);
   };
-
-  const playDemoSound = () => {
-    console.log("Playing demo sound");
-  };
-
-  useEffect(() => {
-    if (selectedSound === "alarm") {
-      playDemoSound();
-    }
-  }, [selectedSound]);
 
   return (
-    <div className={HeaderStyles.audiosettings}>
-      <h3>Audio Settings</h3>
+    <div className={AudioCss.audiosettings}>
+      <h3>Audio Setting</h3>
       <div>
         <select value={selectedSound} onChange={handleSoundChange}>
           {Object.keys(SOUND_MAP).map((soundKey) => (
@@ -61,6 +47,7 @@ const Audiosettings = () => {
         </select>
       </div>
       <div>
+        <span>{`${volume}%`}</span>
         <input
           type="range"
           id="volumeControl"
@@ -70,10 +57,9 @@ const Audiosettings = () => {
           value={volume}
           onChange={handleVolumeChange}
         />
-        <span>{`${volume}%`}</span>
       </div>
       <div>
-        <button onClick={playSound}>Play Sound Test</button>
+        <button onClick={playSoundDemo}>Play Sound Test</button>
       </div>
     </div>
   );
