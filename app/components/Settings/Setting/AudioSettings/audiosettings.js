@@ -73,7 +73,7 @@ const Audiosettings = () => {
         <span>{`${volume}%`}</span>
       </div>
       <div>
-        <button onClick={playSound}>Play Sound</button>
+        <button onClick={playSound}>Play Sound Test</button>
       </div>
     </div>
   );
