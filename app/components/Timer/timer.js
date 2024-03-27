@@ -248,7 +248,6 @@ export default function TimerMain() {
 
   useEffect(() => {
     document.title = title; // Bu kısımda başlığı güncelliyoruz.
-    startHandler(); // auto start
   }, [title]);
 
   useEffect(() => {
