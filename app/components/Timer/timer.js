@@ -107,10 +107,11 @@ export default function TimerMain() {
       setStartButtonColor(colorSettings.longBreakColor);
       setResetStatusName("longBreakTime");
     } else {
-      return alert("Oh no, an error occurred. We're sorry for the inconvenience. Please refresh the page.");
+      return alert(
+        "Oh no, an error occurred. We're sorry for the inconvenience. Please refresh the page."
+      );
     }
   };
-
 
   const startHandler = () => {
     setDuration(currentMinutes * 60 + currentSeconds);
@@ -223,11 +224,15 @@ export default function TimerMain() {
       let timer = duration;
       const interval = setInterval(() => {
         //! setInterval`in bitis suresi. TEST ASAMASINDA SUREYI BURADAN DEGISTIR
-        if (--timer <= 55) {
+        if (--timer <= 0) {
           // Timer Reset
           resetTimer();
-          playSound((localStorage.getItem("selectedSound") || "alarm"), (localStorage.getItem("selectedVolume") || 50));
+          playSound(
+            localStorage.getItem("selectedSound") || "alarm",
+            localStorage.getItem("selectedVolume") || 50
+          );
           isCatogeryStatus(isStatus); // Task Count 0 != status ? Control Task Count
+          startHandler(); // auto start
         } else {
           // Timer Function
           const minutes = parseInt(timer / 60, 10);
@@ -265,30 +270,28 @@ export default function TimerMain() {
   };
 
   return (
-    <>
-      <div className={TimerStyles.container}>
-        <div className={TimerStyles.timer}>
-          <div className={TimerStyles.button}>
-            <TimerButton
-              actived={isActiveStatusButton}
-              pomodoroBtn={createTimerButtonHandler("pomodoroTime")}
-              shortBreakBtn={createTimerButtonHandler("shortBreakTime")}
-              longBreakBtn={createTimerButtonHandler("longBreakTime")}
-            />
-          </div>
-          <div className={TimerStyles.time}>
-            {String(currentMinutes).padStart(2, "0")}:
-            {String(currentSeconds).padStart(2, "0")}
-          </div>
-          <div className={TimerStyles.startResetButton}>
-            {startResetButtonContent()}
-          </div>
+    <div className={TimerStyles.container}>
+      <div className={TimerStyles.timer}>
+        <div className={TimerStyles.button}>
+          <TimerButton
+            actived={isActiveStatusButton}
+            pomodoroBtn={createTimerButtonHandler("pomodoroTime")}
+            shortBreakBtn={createTimerButtonHandler("shortBreakTime")}
+            longBreakBtn={createTimerButtonHandler("longBreakTime")}
+          />
         </div>
-        <button className={TimerStyles.level} onClick={clearLocalStorage}>
-          #{settings.pomoCount}
-        </button>
-        <div className={TimerStyles.tasksLevel}>{activeTask}</div>
+        <div className={TimerStyles.time}>
+          {String(currentMinutes).padStart(2, "0")}:
+          {String(currentSeconds).padStart(2, "0")}
+        </div>
+        <div className={TimerStyles.startResetButton}>
+          {startResetButtonContent()}
+        </div>
       </div>
-    </>
+      <button className={TimerStyles.level} onClick={clearLocalStorage}>
+        #{settings.pomoCount}
+      </button>
+      <div className={TimerStyles.tasksLevel}>{activeTask}</div>
+    </div>
   );
 }
