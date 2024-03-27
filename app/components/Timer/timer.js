@@ -232,7 +232,6 @@ export default function TimerMain() {
             localStorage.getItem("selectedVolume") || 50
           );
           isCatogeryStatus(isStatus); // Task Count 0 != status ? Control Task Count
-          startHandler(); // auto start
         } else {
           // Timer Function
           const minutes = parseInt(timer / 60, 10);
@@ -249,6 +248,7 @@ export default function TimerMain() {
 
   useEffect(() => {
     document.title = title; // Bu kısımda başlığı güncelliyoruz.
+    startHandler(); // auto start
   }, [title]);
 
   useEffect(() => {
