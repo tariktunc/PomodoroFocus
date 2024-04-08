@@ -72,4 +72,4 @@ Pomodoro Çalışma Zamanlayıcısı ile başlamak için:
 Katkılarınız bekleniyor! Lütfen bu depoyu forklayın ve geliştirmelerinizle bir pull request gönderin.
 
 ## Lisans
-Bu proje, MIT Lisansı altında yayınlanmıştır. Daha fazla detay için LICENSE dosyasına bakınız..
+Bu proje, MIT Lisansı altında yayınlanmıştır. Daha fazla detay için LICENSE dosyasına bakınız...
